@@ -1,11 +1,12 @@
 
 <template>
-  <div>
-    // Categories list
-    <div v-for="(item, index) in list" :key="index">
-      <CategoryItem :name="item"/>
-    </div>
-  </div>
+  <v-container>
+    <v-row justify="space-between">
+      <v-col cols="2" v-for="(item, index) in list" :key="index">
+        <CategoryItem :name="item"/>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts" setup>

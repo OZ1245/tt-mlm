@@ -1,10 +1,10 @@
 <template>
   <NuxtLoadingIndicator/>
-  <NuxtLayout>
+  <NuxtLayout class="app">
     <v-layout>
       <AppHeader/>
       
-      <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
+      <v-main class="app__main" style="min-height: 300px;">
         <NuxtPage/>
       </v-main>
       
@@ -12,3 +12,9 @@
     </v-layout>
   </NuxtLayout>
 </template>
+
+<style lang="scss">
+.app__main {
+  max-width: 1200px;
+}
+</style>

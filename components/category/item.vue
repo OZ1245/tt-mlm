@@ -1,13 +1,14 @@
 
 <template>
-  <div>
-    // Category name: {{ name }}
-  </div>
+  <v-card :title="name" :image="image" height="150" color="primary"></v-card>
 </template>
 
 <script lang="ts" setup>
-const props = withDefaults(defineProps<{name: string}>(), {
+import type { ICategoryItemProps } from '~/types';
+
+const props = withDefaults(defineProps<ICategoryItemProps>(), {
   name: '',
+  image: 'https://cdn.vuetifyjs.com/docs/images/cards/dark-beach.jpg'
 });
 
 const { name } = toRefs(props);
