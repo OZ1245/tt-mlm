@@ -1,17 +1,19 @@
 <template>
   <v-app-bar color="primary" class="app-header">
     <template #title>
-      <NuxtLink to="/" class="app-header__link">
+      <nuxt-link to="/" class="app-header__link">
         <h1 class="app-header__title">
           SomeStore
         </h1>
-      </NuxtLink>
+      </nuxt-link>
     </template>
     
     <template #append>
-      <v-badge v-model="showBadge">
-        <v-btn icon="mdi-cart-outline"></v-btn>
-      </v-badge>
+      <v-btn stacked>
+        <v-badge v-model="isBadgeVisible" color="error" dot>
+            <v-icon icon="mdi-cart-outline"/>
+        </v-badge>
+      </v-btn>
     </template>
   </v-app-bar>
 </template>
@@ -21,7 +23,7 @@ import { useIndexStore } from '~/store';
 
 const { getCartItemsCount } = useIndexStore();
 
-const showBadge = computed(() => !!getCartItemsCount);
+const isBadgeVisible = computed(() => !!getCartItemsCount);
 </script>
 
 <style lang="scss">
