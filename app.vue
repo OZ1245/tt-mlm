@@ -7,7 +7,11 @@
       
       <v-main class="app__main">
         <v-container>
-          <app-page-title :breadcrumbs="breadcrumbs"></app-page-title>
+          <v-row>
+            <v-col>
+              <app-page-title :breadcrumbs="breadcrumbs"></app-page-title>
+            </v-col>
+          </v-row>
           <nuxt-page/>
         </v-container>
       </v-main>
@@ -25,20 +29,13 @@ const route = useRoute();
 const pageTitle = computed(() => route.meta.title as string || '');
 
 const breadcrumbs = computed(() => {
-  const paths = route.path.split('/').filter(p => p);
-  
-  const breadcrumbs: IBreadcrumb = paths.map((path, index) => {
+  const breadcrumbs: IBreadcrumb = route.matched.map((item, index) => {
     return {
-      title: path,
-      to: '/' + paths.slice(0, index + 1).join('/')
+      title: item.meta.title as string || '',
+      to: item.path,
+      disabled: !(route.matched.length - 1 < index)
     }
   });
-  
-  breadcrumbs.push({
-    title: pageTitle.value,
-    to: '',
-    disabled: true
-  })
   
   return breadcrumbs;
 });

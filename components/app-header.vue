@@ -9,7 +9,7 @@
     </template>
     
     <template #append>
-      <v-btn stacked>
+      <v-btn to="cart" stacked>
         <v-badge v-model="isBadgeVisible" color="error" dot>
             <v-icon icon="mdi-cart-outline"/>
         </v-badge>
@@ -21,9 +21,9 @@
 <script lang="ts" setup>
 import { useIndexStore } from '~/store';
 
-const { getCartItemsCount } = useIndexStore();
+const { cartItemsCount } = toRefs(useIndexStore());
 
-const isBadgeVisible = computed(() => !!getCartItemsCount);
+const isBadgeVisible = computed(() => !!cartItemsCount.value);
 </script>
 
 <style lang="scss">

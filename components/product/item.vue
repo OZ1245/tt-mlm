@@ -32,7 +32,7 @@
 import type { IProductItemProps } from '~/types';
 import { useIndexStore } from '~/store';
 
-const { currency, putCart, getCartItemById, incrementCartItemCount, decrementCartItemCount } = useIndexStore();
+const { currency, addCartItem, getCartItemById, incrementCartItemCount, decrementCartItemCount } = useIndexStore();
 
 const props = withDefaults(defineProps<IProductItemProps>(), {
   image: 'https://cdn.vuetifyjs.com/docs/images/cards/dark-beach.jpg',
@@ -48,7 +48,7 @@ const count = computed((): number => {
 const isDisabledDecrementButton = computed(() => !cartItem.value?.count);
 
 const handleBayProduct = (): void => {
-  putCart({
+  addCartItem({
     id: id.value,
     name: name.value,
     price: price.value,

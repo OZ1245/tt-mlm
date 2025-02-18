@@ -1,6 +1,11 @@
 
 <template>
-  <v-card :title="name" :image="image" height="150" color="primary"></v-card>
+  <v-card class="card-category">
+    <v-card-text class="card-category__text pa-0">
+      <v-img :src="image"></v-img>
+    </v-card-text>
+    <v-card-title class="card-category__title">{{ name }}</v-card-title>
+  </v-card>
 </template>
 
 <script lang="ts" setup>
@@ -13,3 +18,19 @@ const props = withDefaults(defineProps<ICategoryItemProps>(), {
 
 const { name } = toRefs(props);
 </script>
+
+<style lang="scss">
+.card-category {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: center;
+}
+.card-category__title,
+.card-category__text {
+  width: 100%;
+}
+.card-category__title {
+  text-align: center;
+}
+</style>

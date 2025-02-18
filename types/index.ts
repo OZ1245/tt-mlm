@@ -36,3 +36,9 @@ export interface IPageHeaderProps {
   title?: string;
   breadcrumbs: IBreadcrumb[];
 }
+
+export interface ICartItemProps extends ICartItem {}
+
+export interface IProductCounterProps {
+  count?: number;
+}
