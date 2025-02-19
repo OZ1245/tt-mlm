@@ -25,7 +25,7 @@ const fetchProducts = async () => {
   try {
     products.value = await getProductListByCategory({
       category: route.params.category as string || '',
-      limit: 30
+      limit: 16
     });
   } catch (error) {
     snackbar.add({

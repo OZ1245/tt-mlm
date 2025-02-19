@@ -86,7 +86,7 @@ const fetchProductList = async () => {
   isLoadingProducts.value = true;
   
   try {
-    products.value = await getProductList({ limit: 30 });
+    products.value = await getProductList({ limit: 16 });
   } catch (error) {
     snackbar.add({
       type: 'error',

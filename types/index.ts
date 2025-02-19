@@ -63,6 +63,16 @@ export interface IProductCounterProps {
   count?: number;
 }
 
+export interface IProductTableItem extends IProduct, ICartItemProps {}
+
+export interface IProductTableProps {
+  list: IProductTableItem[];
+}
+
+export interface IProductSkeletonProps {
+  mode: number;
+}
+
 // End components props
 
 // Other

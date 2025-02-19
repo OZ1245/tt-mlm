@@ -14,7 +14,7 @@ interface IUseProduct {
   handleBuyProduct: () => void;
 }
 
-export function useProduct (props: IProductItemProps): IUseProduct {
+export function useProduct (props = {} as IProductItemProps): IUseProduct {
   const { currency, addCartItem, getCartItemById, incrementCartItemCount, decrementCartItemCount } = useCartStore();
 
   const { id, title, image, price } = toRefs(props);

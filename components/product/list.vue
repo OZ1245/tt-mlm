@@ -19,7 +19,7 @@
       </v-col>
     </v-row>
     
-    <product-skeleton v-if="loading" />
+    <product-skeleton v-if="loading" :mode="toggleLayout" />
     
     <template v-else>
       <v-alert v-if="!isExistsProducts" :type="'error'">
@@ -40,6 +40,12 @@
                 <product-item-list v-bind="item" />
               </v-col>
             </v-row>
+          </v-col>
+        </v-row>
+        
+        <v-row v-if="isTableView">
+          <v-col>
+            <product-item-table :list="list" />
           </v-col>
         </v-row>
       </template>

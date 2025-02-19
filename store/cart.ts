@@ -30,6 +30,8 @@ export const useCartStore = defineStore('cartStore', () => {
   const findCartItemIndex = (id: number) => items.value.findIndex((item) => item.id === id);
 
   const getCartItemById = (id: number): ICartItem | null => items.value.find((item) => item.id === id) || null;
+
+  const getCartItemCountById = (id: number): number => items.value.find((item) => item.id === id)?.count || 0;
   
   const addCartItem = (data: ICartItem): void => {
     cookie.value = null;
@@ -107,6 +109,7 @@ export const useCartStore = defineStore('cartStore', () => {
     clearCartItem,
     removeCartItem,
     getCartItemById,
+    getCartItemCountById,
     incrementCartItemCount,
     decrementCartItemCount,
     changeCountCartItem

@@ -2,7 +2,7 @@
   <v-card class="product product--list">
     <v-row align="center" justify="center" no-gutters>
       <v-col cols="auto">
-        <v-img :src="image" width="80" height="80" cover class="ma-4"></v-img>
+        <v-img :src="image" width="80" height="80" contain class="ma-4"></v-img>
       </v-col>
     
       <v-col>
