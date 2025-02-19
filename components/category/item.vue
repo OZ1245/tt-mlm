@@ -1,6 +1,6 @@
 
 <template>
-  <v-card class="card-category">
+  <v-card :to="categoryLink" class="card-category">
     <v-img :src="image" height="150" cover></v-img>
     <v-card-title class="card-category__title">{{ name }}</v-card-title>
   </v-card>
@@ -13,8 +13,9 @@ const props = withDefaults(defineProps<ICategoryItemProps>(), {
   name: '',
   image: 'https://cdn.vuetifyjs.com/docs/images/cards/dark-beach.jpg'
 });
-
 const { name } = toRefs(props);
+
+const categoryLink = ref<string>(`/category/${name.value}`);
 </script>
 
 <style lang="scss">

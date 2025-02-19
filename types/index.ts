@@ -17,15 +17,21 @@ export type ICategory = string;
 
 // Requests
 
-export interface IGetProductListPayload {
+interface ICommonPayload {
   limit?: number;
   sort?: string;
 }
+
+export interface IGetProductListPayload extends ICommonPayload {}
 
 // END Requests
 
 export interface ICartItem extends IProduct {
   count: number;
+}
+
+export interface IGetProductListByCategoryPayload extends ICommonPayload {
+  category: string;
 }
 
 // Components props
@@ -39,6 +45,7 @@ export interface IProductItemProps extends IProduct {}
 
 export interface IProductListProps {
   list: IProductItemProps[];
+  loading: boolean;
 }
 
 export interface IPageHeaderProps {
@@ -60,4 +67,8 @@ export interface IProductCounterProps {
 
 // Other
 
-export type IBreadcrumb = InstanceType<typeof VBreadcrumbs>['$props']['items'];
+export interface IBreadcrumb {
+  title: string;
+  to?: string;
+  disabled?: boolean;
+}

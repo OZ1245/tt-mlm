@@ -28,18 +28,25 @@ import type { IBreadcrumb } from '~/types';
 
 const route = useRoute();
 
-// const pageTitle = computed(() => route.meta.title as string || '');
-
 const breadcrumbs = computed(() => {
-  const breadcrumbs: IBreadcrumb = route.matched.map((item, index) => {
-    return {
+  let items: IBreadcrumb[] = [];
+  
+  if (route.matched.length) {
+    items.push({
+      title: 'Главная',
+      to: '/',
+    });
+  }
+
+  route.matched?.forEach((item, index) => {
+    items.push({
       title: item.meta.title as string || '',
       to: item.path,
       disabled: !(route.matched.length - 1 < index)
-    }
+    })
   });
   
-  return breadcrumbs;
+  return items;
 });
 </script>
 

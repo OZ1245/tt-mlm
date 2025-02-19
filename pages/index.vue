@@ -1,4 +1,3 @@
-
 <template>
   <v-container>
     <v-row>
@@ -41,24 +40,7 @@
         </v-row>
         <v-row>
           <v-col>
-            <template v-if="isLoadingProducts">
-              <v-row>
-                <v-col v-for="i in 4" :key="i">
-                  <v-skeleton-loader
-                    class="mx-auto border"
-                    type="card, actions"
-                  ></v-skeleton-loader>
-                </v-col>
-              </v-row>
-            </template>
-            
-            <template v-else>
-              <product-list v-if="isExistsProducts" :list="products"/>
-              
-              <v-alert v-else>
-                В данной категории пока нет товаров
-              </v-alert>
-            </template>
+            <product-list :list="products" :loading="isLoadingProducts"/>
           </v-col>
         </v-row>
       </v-col>
@@ -83,8 +65,7 @@ const panel = ref([0]);
 const categories = ref<ICategory[]>([]);
 const products = ref<IProduct[]>([]);
 
-const isExistsCategories = computed(() => !!categories.value.length);
-const isExistsProducts = computed(() => !!products.value.length);
+const isExistsCategories = computed((): boolean => !!categories.value.length);
 
 const fetchCategoryList = async () => {
   isLoadingCategories.value = true;
