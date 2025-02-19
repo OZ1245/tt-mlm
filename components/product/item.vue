@@ -1,57 +1,39 @@
 <template>
   <v-card class="product">
-    <v-card-text class="pa-0">
-      <v-img :src="image"></v-img>
-    </v-card-text>
+    <v-img :src="image" height="300" aspect-ratio="16/9"></v-img>
     
-    <v-card-title>{{ name }}</v-card-title>
+    <v-card-title>{{ title }}</v-card-title>
     <v-card-subtitle></v-card-subtitle>
     
     <v-card-actions class="product__footer">
       <p>{{ price }} {{ currency }}</p>
       <v-btn v-if="!isExist" variant="tonal" color="primary" @click="handleBayProduct">Купить</v-btn>
-      <v-btn-group
-        v-else
-        color="primary"
-        variant="outlined"
-        density="compact"
-      >
-        <v-btn variant="tonal" color="primary" :disabled="isDisabledDecrementButton" @click="handleDecrementCount">
-          <v-icon icon="mdi-minus"/>
-        </v-btn>
-        <v-btn class="product__button">{{ count }}</v-btn>
-        <v-btn variant="tonal" color="primary" @click="handleIncrementCount">
-          <v-icon icon="mdi-plus"/>
-        </v-btn>
-      </v-btn-group>
+      <product-counter v-else :count="count" @decrement="handleDecrementCount" @increment="handleIncrementCount"/>
     </v-card-actions>
   </v-card>
 </template>
 
 <script lang="ts" setup>
 import type { IProductItemProps } from '~/types';
-import { useIndexStore } from '~/store';
+import { useCartStore } from '~/store/cart';
 
-const { currency, addCartItem, getCartItemById, incrementCartItemCount, decrementCartItemCount } = useIndexStore();
+const { currency, addCartItem, getCartItemById, incrementCartItemCount, decrementCartItemCount } = useCartStore();
 
 const props = withDefaults(defineProps<IProductItemProps>(), {
   image: 'https://cdn.vuetifyjs.com/docs/images/cards/dark-beach.jpg',
 });
 
-const { id, name, image, price } = toRefs(props);
+const { id, title, image, price } = toRefs(props);
 
 const cartItem = computed(() => getCartItemById(id.value));
 const isExist = computed(() => !!cartItem.value);
 const count = computed((): number => {
   return cartItem.value?.count || 0
 });
-const isDisabledDecrementButton = computed(() => !cartItem.value?.count);
 
 const handleBayProduct = (): void => {
   addCartItem({
-    id: id.value,
-    name: name.value,
-    price: price.value,
+    ...props,
     count: 1
   })
 }

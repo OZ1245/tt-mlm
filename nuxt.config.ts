@@ -4,14 +4,17 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     'vuetify-nuxt-module',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    'nuxt-snackbar'
   ],
+  snackbar: {
+    bottom: true,
+    right: true,
+    duration: 5000
+  }
   // vuetify: {
-  //   moduleOptions: {
-  //     /* module specific options */
-  //   },
   //   vuetifyOptions: {
-  //     /* vuetify options */
+  //     components: ['VDialog', 'VSnackbar']
   //   }
   // }
 })

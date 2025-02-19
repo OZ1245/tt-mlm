@@ -2,8 +2,8 @@
 <template>
   <v-container class="product">
     <v-row>
-      <v-col cols="3" v-for="(item, index) in list" :key="index">
-        <product-item :id="item.id" :name="item.name" :image="item.image" :price="item.price"></product-item>
+      <v-col cols="3" v-for="(item, index) in list" :key="`product-${index}`">
+        <product-item v-bind="item" />
       </v-col>
     </v-row>
   </v-container>

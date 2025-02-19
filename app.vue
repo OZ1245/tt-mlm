@@ -18,6 +18,8 @@
       
       <app-footer/>
     </v-layout>
+    
+    <nuxt-snackbar/>
   </nuxt-layout>
 </template>
 
@@ -26,7 +28,7 @@ import type { IBreadcrumb } from '~/types';
 
 const route = useRoute();
 
-const pageTitle = computed(() => route.meta.title as string || '');
+// const pageTitle = computed(() => route.meta.title as string || '');
 
 const breadcrumbs = computed(() => {
   const breadcrumbs: IBreadcrumb = route.matched.map((item, index) => {

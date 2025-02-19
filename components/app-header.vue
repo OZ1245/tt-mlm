@@ -19,9 +19,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useIndexStore } from '~/store';
+import { useCartStore } from '~/store/cart';
 
-const { cartItemsCount } = toRefs(useIndexStore());
+const { cartItemsCount } = toRefs(useCartStore());
 
 const isBadgeVisible = computed(() => !!cartItemsCount.value);
 </script>

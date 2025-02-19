@@ -1,9 +1,7 @@
 
 <template>
   <v-card class="card-category">
-    <v-card-text class="card-category__text pa-0">
-      <v-img :src="image"></v-img>
-    </v-card-text>
+    <v-img :src="image" height="150" cover></v-img>
     <v-card-title class="card-category__title">{{ name }}</v-card-title>
   </v-card>
 </template>

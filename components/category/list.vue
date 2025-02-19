@@ -2,7 +2,7 @@
 <template>
   <v-container>
     <v-row justify="space-between">
-      <v-col cols="2" v-for="(item, index) in list" :key="index">
+      <v-col cols="3" v-for="(item, index) in list" :key="index">
         <category-item :name="item"/>
       </v-col>
     </v-row>

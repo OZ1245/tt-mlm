@@ -2,10 +2,17 @@
   <v-card>
     <v-row>
       <v-col cols="7">
-        <v-card-title>{{ name }}</v-card-title>
-        <v-card-text>
-          <product-counter :count="count" @decrement="handleDecrementCount" @increment="handleIncrementCount"/>
-        </v-card-text>
+        <v-row align="center" justify="center" no-gutters>
+          <v-col cols="auto">
+            <v-img :src="image" width="80" height="100%" cover class="ma-4"/>
+          </v-col>
+          <v-col>
+            <v-card-title>{{ title }}</v-card-title>
+            <v-card-text>
+              <product-counter :count="count" @decrement="handleDecrementCount" @increment="handleIncrementCount"/>
+            </v-card-text>
+          </v-col>
+        </v-row>
       </v-col>
       
       <v-col cols="5" align="end">
@@ -28,12 +35,12 @@
 
 <script setup lang="ts">
 import type { ICartItemProps } from '~/types';
-import { useIndexStore } from '~/store';
+import { useCartStore } from '~/store/cart';
 
-const { currency } = useIndexStore();
+const { currency } = useCartStore();
 
 const props = defineProps<ICartItemProps>();
-const { name, count, id, price } = toRefs(props);
+const { title, count, id, price, image, category } = toRefs(props);
 
 const emits = defineEmits<{
   (e: 'decrement' | 'increment' | 'remove', id: number): void;

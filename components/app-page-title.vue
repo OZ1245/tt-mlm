@@ -7,6 +7,7 @@
       </template>
     </v-breadcrumbs>
   </v-row>
+  
   <v-row>
     <h2 class="text-h3" v-text="title"></h2>
   </v-row>
