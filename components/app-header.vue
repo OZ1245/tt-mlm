@@ -9,7 +9,7 @@
     </template>
     
     <template #append>
-      <v-btn to="cart" stacked>
+      <v-btn to="/cart" stacked>
         <v-badge v-model="isBadgeVisible" color="error" dot>
             <v-icon icon="mdi-cart-outline"/>
         </v-badge>

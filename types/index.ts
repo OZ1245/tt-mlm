@@ -8,7 +8,7 @@ export interface IProduct {
   price: number; // float
   category?: string;
   description?: string;
-  image?: string;
+  image: string;
 }
 
 export type ICategory = string;
