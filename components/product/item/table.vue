@@ -17,7 +17,7 @@
     <template v-slot:item.price="{ item }">{{ item.price }} {{ currency }}</template>
     <template v-slot:item.actions="{ item }">
       <v-btn
-        v-if="!getCartItemById(item.id)"
+        v-if="!getExistsCartItem(item.id)"
         variant="tonal"
         color="primary"
         @click="handleBuyProduct(item)"
@@ -27,8 +27,8 @@
       <product-counter
         v-else
         :count="getCartItemCountById(item.id)"
-        @decrement="incrementCartItemCount(item.id)"
-        @increment="decrementCartItemCount(item.id)"
+        @decrement="handleDecrementProductCount(item.id)"
+        @increment="handleIncrementProductCount(item.id)"
       />
     </template>
   </v-data-table>
@@ -64,11 +64,26 @@ const listHeaders = [
 ];
 
 const getProductRoute = (id: number): string => `/product/${id}`;
+const getExistsCartItem = (id: number): boolean => {
+  console.log('=== getExistsCartItem ===');
+  const r = getCartItemCountById(id);
+  console.log('r', r);
+  return !!r;
+}
 
 const handleBuyProduct = (item: IProductTableItem) => {
   addCartItem({
     ...item,
     count: 1
   });
+}
+
+const handleDecrementProductCount = (id: number) => {
+  decrementCartItemCount(id);
+}
+const handleIncrementProductCount = (id: number) => {
+  console.log('=== handleIncrementProductCount ===');
+  console.log('id:', id);
+  incrementCartItemCount(id);
 }
 </script>

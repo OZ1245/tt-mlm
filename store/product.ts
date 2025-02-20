@@ -2,8 +2,6 @@ export const useProductStore = defineStore('productStore', () => {
   const cookie = useCookie('productListLayout', {
     default: () => 0,
     watch: true,
-    encode: (value: number) => value.toString(),
-    decode: (value: string) => +value
   });
 
   const layoutId = ref<number>(0);
