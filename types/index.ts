@@ -1,5 +1,3 @@
-import type { VBreadcrumbs } from 'vuetify/components/VBreadcrumbs';
-
 // Responses
 
 export interface IProduct {
