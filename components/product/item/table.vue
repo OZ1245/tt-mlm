@@ -64,12 +64,7 @@ const listHeaders = [
 ];
 
 const getProductRoute = (id: number): string => `/product/${id}`;
-const getExistsCartItem = (id: number): boolean => {
-  console.log('=== getExistsCartItem ===');
-  const r = getCartItemCountById(id);
-  console.log('r', r);
-  return !!r;
-}
+const getExistsCartItem = (id: number): boolean => !!getCartItemCountById(id);
 
 const handleBuyProduct = (item: IProductTableItem) => {
   addCartItem({
@@ -82,8 +77,6 @@ const handleDecrementProductCount = (id: number) => {
   decrementCartItemCount(id);
 }
 const handleIncrementProductCount = (id: number) => {
-  console.log('=== handleIncrementProductCount ===');
-  console.log('id:', id);
   incrementCartItemCount(id);
 }
 </script>

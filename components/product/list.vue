@@ -2,6 +2,9 @@
 <template>
   <v-container class="product">
     <v-row>
+      <v-col v-if="title" cols="auto">
+        <h2 class="text-h4">{{ title }}</h2>
+      </v-col>
       <v-col align="end" i>
         <v-btn-toggle v-model="toggleLayout" density="compact" border divided>
           <v-btn>
@@ -63,9 +66,10 @@ const { setProductListLayout } = productStore;
 
 const props = withDefaults(defineProps<IProductListProps>(), {
   list: () => ([]),
-  loading: false
+  loading: false,
+  title: '',
 });
-const { list, loading } = toRefs(props);
+const { list, loading, title } = toRefs(props);
 
 const toggleLayout = computed({
   get() {

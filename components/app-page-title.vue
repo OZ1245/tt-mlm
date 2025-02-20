@@ -1,11 +1,11 @@
 
 <template>
   <v-row v-if="breadcrumbs">
-    <v-breadcrumbs :items="breadcrumbs">
-      <template #prepend>
-        <v-icon icon="mdi-home" size="small"></v-icon>
-      </template>
-    </v-breadcrumbs>
+<!--    <v-breadcrumbs :items="breadcrumbs">-->
+<!--      <template #prepend>-->
+<!--        <v-icon icon="mdi-home" size="small"></v-icon>-->
+<!--      </template>-->
+<!--    </v-breadcrumbs>-->
   </v-row>
   
   <v-row>

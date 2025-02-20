@@ -3,7 +3,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <product-list :list="products" :loading="isLoadingProducts"></product-list>
+        <product-list :list="products" :loading="isLoadingProducts" :title="productListTitle"></product-list>
       </v-col>
     </v-row>
   </v-container>
@@ -18,6 +18,8 @@ const snackbar = useSnackbar();
 
 const isLoadingProducts = ref<boolean>(false);
 const products = ref<IProduct[]>([]);
+const categoryName = ref<string>('');
+const productListTitle = route.params.category as string || 'Товары категории';
 
 const fetchProducts = async () => {
   isLoadingProducts.value = true;
@@ -27,6 +29,7 @@ const fetchProducts = async () => {
       category: route.params.category as string || '',
       limit: 16
     });
+    categoryName.value = route.params.category as string || 'Категория';
   } catch (error) {
     snackbar.add({
       type: 'error',
@@ -37,14 +40,17 @@ const fetchProducts = async () => {
   }
 }
 
-const initPage = () => {
-  fetchProducts();
+const initPage = async () => {
+  await fetchProducts();
+  
+  useHead({
+    title: categoryName.value,
+  });
+  console.log('categoryName.value: ', categoryName.value);
+  definePageMeta({
+    breadcrumb: categoryName.value // FIXME: пустая строка вместо значения
+  });
 }
-console.log('route.params.category:', route.params.category);
-definePageMeta({
-  title: `Категория`
-  // title: ''
-});
 
 initPage();
 </script>

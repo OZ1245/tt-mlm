@@ -31,16 +31,17 @@ const route = useRoute();
 const breadcrumbs = computed(() => {
   let items: IBreadcrumb[] = [];
   
-  if (route.matched.length) {
-    items.push({
-      title: 'Главная',
-      to: '/',
-    });
-  }
+  // if (route.matched.length) {
+  //   items.push({
+  //     title: 'Главная',
+  //     to: '/',
+  //   });
+  // }
 
   route.matched?.forEach((item, index) => {
+    console.log(item);
     items.push({
-      title: item.meta.title as string || '',
+      title: item.meta.breadcrumb as string || '',
       to: item.path,
       disabled: !(route.matched.length - 1 < index)
     })
@@ -48,6 +49,17 @@ const breadcrumbs = computed(() => {
   
   return items;
 });
+
+const initApp = () => {
+  useHead({
+    titleTemplate: '%s | SomeStore',
+  });
+  definePageMeta({
+    breadcrumb: 'Главная'
+  });
+}
+
+initApp();
 </script>
 
 <style lang="scss">

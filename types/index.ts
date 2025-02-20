@@ -46,6 +46,7 @@ export interface IProductItemProps extends IProduct {}
 export interface IProductListProps {
   list: IProductItemProps[];
   loading: boolean;
+  title?: string;
 }
 
 export interface IPageHeaderProps {

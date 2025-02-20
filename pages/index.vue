@@ -35,12 +35,7 @@
       <v-col>
         <v-row>
           <v-col>
-            <h3 class="text-h4">Все товары</h3>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <product-list :list="products" :loading="isLoadingProducts"/>
+            <product-list :list="products" :loading="isLoadingProducts" :title="productListTitle"/>
           </v-col>
         </v-row>
       </v-col>
@@ -52,18 +47,14 @@
 import type { ICategory, IProduct } from '~/types';
 import { getCategoryList, getProductList } from '~/api';
 
-definePageMeta({
-  title: 'Главная'
-});
-
 const snackbar = useSnackbar();
 
-const isLoadingPage = ref(false);
 const isLoadingCategories = ref(false);
 const isLoadingProducts = ref(false);
 const panel = ref([0]);
 const categories = ref<ICategory[]>([]);
 const products = ref<IProduct[]>([]);
+const productListTitle = 'Все товары';
 
 const isExistsCategories = computed((): boolean => !!categories.value.length);
 

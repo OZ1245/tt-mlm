@@ -37,6 +37,7 @@
     <v-row>
       <v-col>
         <article>
+          <h3 class="text-h6">Описание товара</h3>
           <p>{{ product.description }}</p>
         </article>
       </v-col>
@@ -48,10 +49,6 @@
 import type { IProduct } from '~/types';
 import { useCartStore } from '~/store/cart';
 import { getProduct } from "~/api";
-
-definePageMeta({
-  title: 'Товар'
-});
 
 const route = useRoute();
 const snackbar = useSnackbar();
@@ -93,8 +90,15 @@ const fetchProduct = async () => {
   }
 }
 
-const initPage = () => {
-  fetchProduct();
+const initPage = async () => {
+  await fetchProduct();
+  
+  useHead({
+    title: product.value?.title || 'Товар'
+  });
+  definePageMeta({
+    breadcrumb: product.value?.title // FIXME: пустая строка вместо значения
+  });
 }
 
 const handleIncrementProductCount = () => {
