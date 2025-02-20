@@ -10,7 +10,7 @@
     
     <template #append>
       <v-btn to="/cart" stacked>
-        <v-badge v-model="isBadgeVisible" color="error" dot>
+        <v-badge v-model="isBadgeVisible" color="error" :content="cartItemsCount">
             <v-icon icon="mdi-cart-outline"/>
         </v-badge>
       </v-btn>
