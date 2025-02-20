@@ -9,6 +9,7 @@ interface IUseProduct {
   cartItem: ComputedRef<ICartItem | null>;
   isExist: ComputedRef<boolean>;
   count: ComputedRef<number>;
+  productRoute: ComputedRef<string>;
   handleIncrementCount: () => void;
   handleDecrementCount: () => void;
   handleBuyProduct: () => void;
@@ -24,6 +25,7 @@ export function useProduct (props = {} as IProductItemProps): IUseProduct {
   const count = computed((): number => {
     return cartItem.value?.count || 0
   });
+  const productRoute = computed((): string => `/product/${id.value}`);
 
   const handleIncrementCount = (): void => {
     incrementCartItemCount(id.value);
@@ -47,6 +49,7 @@ export function useProduct (props = {} as IProductItemProps): IUseProduct {
     cartItem,
     isExist,
     count,
+    productRoute,
     handleIncrementCount,
     handleDecrementCount,
     handleBuyProduct

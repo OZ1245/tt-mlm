@@ -7,7 +7,12 @@
     hide-default-footer
   >
     <template v-slot:item.image="{ item }">
-      <v-img :src="item.image" width="50" height="50" contain />
+      <nuxt-link :to="getProductRoute(item.id)">
+        <v-img :src="item.image" width="50" height="50" contain />
+      </nuxt-link>
+    </template>
+    <template v-slot:item.title="{ item }">
+      <nuxt-link :to="getProductRoute(item.id)">{{ item.title }}</nuxt-link>
     </template>
     <template v-slot:item.price="{ item }">{{ item.price }} {{ currency }}</template>
     <template v-slot:item.actions="{ item }">
@@ -56,7 +61,9 @@ const listHeaders = [
     title: '',
     align: 'end',
   },
-]
+];
+
+const getProductRoute = (id: number): string => `/product/${id}`;
 
 const handleBuyProduct = (item: IProductTableItem) => {
   addCartItem({

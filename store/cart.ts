@@ -34,9 +34,13 @@ export const useCartStore = defineStore('cartStore', () => {
   const getCartItemCountById = (id: number): number => items.value.find((item) => item.id === id)?.count || 0;
   
   const addCartItem = (data: ICartItem): void => {
+    console.log('=== addCartItem ===');
+    console.log('data:', data);
     cookie.value = null;
     
-    const foundCartItemIndex = findCartItemIndex(data.id)
+    const foundCartItemIndex = findCartItemIndex(data.id);
+
+    console.log('foundCartItemIndex:', foundCartItemIndex);
 
     if (foundCartItemIndex >= 0) {
       items.value[foundCartItemIndex].count += 1;

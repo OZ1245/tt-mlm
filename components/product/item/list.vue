@@ -2,12 +2,16 @@
   <v-card class="product product--list">
     <v-row align="center" justify="center" no-gutters>
       <v-col cols="auto">
-        <v-img :src="image" width="80" height="80" contain class="ma-4"></v-img>
+        <nuxt-link :to="productRoute">
+          <v-img :src="image" width="80" height="80" contain class="ma-4"></v-img>
+        </nuxt-link>
       </v-col>
     
       <v-col>
-        <v-card-title>{{ title }}</v-card-title>
-        <v-card-text>{{ price }} {{ currency }}</v-card-text>
+        <nuxt-link :to="productRoute" class="text-decoration-none">
+          <v-card-title>{{ title }}</v-card-title>
+        </nuxt-link>
+        <v-card-item>{{ price }} {{ currency }}</v-card-item>
       </v-col>
     
       <v-col cols="auto">
@@ -34,6 +38,7 @@ const {
   price,
   isExist,
   count,
+  productRoute,
   handleDecrementCount,
   handleIncrementCount,
   handleBuyProduct

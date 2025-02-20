@@ -1,12 +1,15 @@
 <template>
   <v-card class="product">
-    <v-img :src="image" height="300" aspect-ratio="16/9"></v-img>
+    <nuxt-link :to="productRoute">
+      <v-img :src="image" height="300" aspect-ratio="16/9"></v-img>
+    </nuxt-link>
     
-    <v-card-title>{{ title }}</v-card-title>
-    <v-card-subtitle></v-card-subtitle>
+    <nuxt-link :to="productRoute" class="text-decoration-none">
+      <v-card-title>{{ title }}</v-card-title>
+    </nuxt-link>
     
     <v-card-actions class="product__footer">
-      <p>{{ price }} {{ currency }}</p>
+      <v-card-item>{{ price }} {{ currency }}</v-card-item>
       <v-btn v-if="!isExist" variant="tonal" color="primary" @click="handleBuyProduct">Купить</v-btn>
       <product-counter v-else :count="count" @decrement="handleDecrementCount" @increment="handleIncrementCount"/>
     </v-card-actions>
@@ -27,6 +30,7 @@ const {
   price,
   isExist,
   count,
+  productRoute,
   handleDecrementCount,
   handleIncrementCount,
   handleBuyProduct
